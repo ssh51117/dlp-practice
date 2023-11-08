@@ -185,6 +185,12 @@ const TabularParametersStep = ({
                   label={problemType.label}
                 />
               ))}
+
+              <FormControlLabel
+              value="New button"
+              control={<Radio />}
+              label="New Button"
+              />
             </RadioGroup>
           )}
         />

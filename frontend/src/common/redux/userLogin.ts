@@ -272,6 +272,9 @@ export const signInViaEmailAndPassword = createAsyncThunk<
   async ({ email, password }, thunkAPI) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      if(auth.currentUser) {
+        console.log("User signed in with email: ", auth.currentUser.email);
+      }
       return;
     } catch (e) {
       if (e instanceof FirebaseError) {
@@ -293,6 +296,9 @@ export const signInViaGoogleRedirect = createAsyncThunk<
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider);
     //await signInWithRedirect(auth, googleProvider);
+    if(auth.currentUser) {
+      console.log("User signed in with email: ", auth.currentUser.email);
+    }
     return;
   } catch (e) {
     if (e instanceof FirebaseError) {
@@ -313,6 +319,9 @@ export const signInViaGithubRedirect = createAsyncThunk<
     await signInWithPopup(auth, githubProvider);
     //await signInWithRedirect(auth, githubProvider);
     //TODO: Replace with signInWithRedirect: https://firebase.google.com/docs/auth/web/redirect-best-practices
+    if (auth.currentUser) {
+      console.log("User signed in with email: ", auth.currentUser.email);
+    }
     return;
   } catch (e) {
     if (e instanceof FirebaseError) {

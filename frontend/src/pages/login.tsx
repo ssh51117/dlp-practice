@@ -8,7 +8,7 @@ import {
   signInWithGoogle,
   signInWithGithub,
   getRedirectResultFromFirebase,
-} from "../../firebase";*/
+} from "../../firebase"; */
 /* import { setCurrentUser } from "../../redux/userLogin"; */
 import GoogleLogo from "/public/images/logos/google.png";
 import GithubLogo from "/public/images/logos/github.png";
@@ -29,6 +29,10 @@ import Footer from "@/common/components/Footer";
 import { SerializedError } from "@reduxjs/toolkit";
 import { useRouter } from "next/router";
 import CircularProgress from "@mui/material/CircularProgress";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+const fb: typeof firebase = firebase;
 
 const LoadingOverlay = () => {
   return (
@@ -90,7 +94,7 @@ const Login = () => {
       </p>
     </>
   );
-
+  
   const SocialLogins = (
     <>
       <div className="d-flex justify-content-evenly mb-5">
@@ -103,6 +107,13 @@ const Login = () => {
             setIsLoading(true);
             try {
               await dispatch(signInViaGoogleRedirect()).unwrap();
+              /*const user = fb.auth().currentUser;
+              if (user) {
+                const userEmail = user.email;
+                console.log("User signed in with Google email: ", userEmail);
+              } else {
+                console.log("User signed in withi Google, but email not")
+              }*/
             } catch (e) {
               toast.error((e as SerializedError).message, {
                 position: toast.POSITION.TOP_CENTER,
@@ -221,6 +232,7 @@ const Login = () => {
                 await dispatch(
                   signInViaEmailAndPassword({ email, password })
                 ).unwrap();
+                //console.log("User signed in with email: ", email); //new
               } catch (e) {
                 toast.error((e as SerializedError).message, {
                   position: toast.POSITION.TOP_CENTER,

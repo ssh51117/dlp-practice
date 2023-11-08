@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHippo } from '@fortawesome/free-solid-svg-icons'
 import { COLORS, URLs } from "../../constants";
 import { LinkedIn, YouTube, Instagram, GitHub } from "@mui/icons-material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -56,6 +58,14 @@ const Footer = () => {
             href={URLs.github}
           >
             <GitHub />
+          </a>
+          <a
+            className="foot-element"
+            title="Random Icon"
+            data-testid="fa-solid fa-hippo"
+            href={URLs.youtube}
+          >
+            <FontAwesomeIcon icon ={faHippo}/>
           </a>
         </div>
       </ThemeProvider>
