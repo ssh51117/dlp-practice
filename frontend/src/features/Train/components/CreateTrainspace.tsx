@@ -73,7 +73,7 @@ const CreateTrainspace = () => {
               error={errors.dataSource ? true : false}
               onChange={(e) => onChange(e.target.value)}
               value={value ?? ""}
-              helperText={errors.dataSource ? "Data Source is required" : ""}
+              helperText={errors.dataSource ? "Data Source is required." : ""}
             >
               {IMPLEMENTED_DATA_SOURCE_ARR.map((source) => (
                 <MenuItem key={source} value={source}>
